@@ -9,9 +9,11 @@
       <button @click="clearSearch" v-show="searchInput !== ''" class="button">Clear search</button>
     </div>
 
+    <!-- Loading  -->
+    <Loading v-if="$fetchState.pending"/>
 
     <!-- Movies -->
-    <div class="container movies">
+    <div v-else class="container movies">
       <!-- Searched movies -->
       <div v-if="searchInput !== ''" id="movie-grid" class="movies-grid">
         <div class="movie" v-for="(movie, index) in searchedMovies" :key="index">
@@ -48,8 +50,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
-
 export default {
   name: 'IndexPage',
 
@@ -68,6 +68,7 @@ export default {
     }
     await this.searchMovies();
   },
+  fetchDelay: 1000, //sets the delay of the fetch request to 1sec, this may improve ux
 
   methods: {
     async getMovies() {
@@ -97,6 +98,11 @@ export default {
 </script>
 
 <style lang="scss">
+  .loading {
+    padding-top: 120px;
+    align-items: flex-start;
+  }
+
   .search {
     display: flex;
     padding: 32px 16px;
