@@ -78,7 +78,7 @@ export default {
       res.data.results.forEach((movie) => {
         this.movies.push(movie)
       })
-      console.log(this.movies)
+      console.log('hi')
     },
     async searchMovies() {
       const data = this.$axios.get(`https://api.themoviedb.org/3/search/movie?api_key=da2bc268e07d9b4f763d9274e370a55a&language=pt-BR&query=${this.searchInput}`)
